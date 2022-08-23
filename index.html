@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store Vue App - Dynamic Binding & Class</title>
+  <script src="https://unpkg.com/vue@3.0.2"></script>
+  <style>
+    img {
+      width: 120px;
+      height: 80px;
+    }
+
+    body {
+      background: #eee;
+      max-width: 960px;
+      margin: 20px auto;
+    }
+
+    p, h3, ul {
+      margin: 0;
+      padding: 0
+    }
+
+    li {
+      list-style: none;
+      background: #FFF;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li.fav {
+      background: green;
+      color: white
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h2>Simple Vue App to Show & hide books from Author</h2>
+
+  <div id="app">
+
+    <div v-if="showBooks"></div>
+      <ul>
+        <!-- 
+          We can change "in books" to "in filteredBooks"
+          If we want to use it
+        -->
+        <li v-for="book in books" :class="{fav: book.isFavorite}" @click="toggleFav(book)">
+        <img :src="book.image" alt="book.title">
+          <h3>{{book.title}}</h3>
+          <p>{{book.author}}</p>
+        </li>
+      </ul>
+    </div><br>
+
+
+    <button @click="toggleShowBooks">
+      <span v-if="showBooks">Hide Books</span>
+      <span v-else>Show Books</span>
+    </button><hr>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
